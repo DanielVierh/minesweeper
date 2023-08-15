@@ -19,6 +19,29 @@ body {
   font-family: sans-serif;
   line-height: 1.5em;
   scroll-behavior: smooth;
-  background-color: rgba(0, 0, 0, 0.874);
+  background-color: rgba(28, 27, 27, 0.827);
   color: white;
+}
+
+h1 {
+  text-align: center;
+}
+
+.field {
+  width: 90%;
+  height: 85vh;
+  background-color: rgba(28, 27, 27, 0.827);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  margin: 0 auto;
+}
+.field .tile {
+  width: 20%;
+  background-color: white;
+  border: 1px solid rgba(28, 27, 27, 0.827);
+  margin: 2px;
+  border-radius: 3px;
+  color: black;
 }

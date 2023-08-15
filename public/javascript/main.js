@@ -27,7 +27,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/script.js */ \"./src/js/script.js\");\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_script_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/style.scss */ \"./src/scss/style.scss\");\n\r\n\r\n\n\n//# sourceURL=webpack://project-template/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/script.js */ \"./src/js/script.js\");\n/* harmony import */ var _js_script_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_script_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./scss/style.scss */ \"./src/scss/style.scss\");\n\n\n\n\n//# sourceURL=webpack://project-template/./src/index.js?");
 
 /***/ }),
 
@@ -37,7 +37,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
   \**************************/
 /***/ (() => {
 
-eval("\n\n//# sourceURL=webpack://project-template/./src/js/script.js?");
+eval("const tiles = document.querySelectorAll('.tile');\nlet bomb_Map = [];\n\n\nwindow.onload = ()=> {\n    add_Bombs();\n    helper_colorize_Bombs()\n}\n\n\nfunction add_Bombs() {\n    for(let i = 1; i <= 6; i++) {\n        const randomNumb = parseInt(Math.random() * tiles.length + 1);\n        const tileId = `tile_${randomNumb}`\n        if(bomb_Map.includes(tileId)) {\n            i = i -= 1;\n        }else {\n            bomb_Map.push(tileId)\n        }\n    }\n\n    console.log(bomb_Map);\n\n    if(bomb_Map.includes(\"tile_61\")) {\n        console.warn(\"ALERT\")\n    }\n}\n\nfunction helper_colorize_Bombs() {\n    for(let i = 0; i < bomb_Map.length; i++) {\n        const tileId = `${bomb_Map[i]}`;\n        document.getElementById(tileId).style.backgroundColor = 'red'\n        console.log(tileId);\n    }\n}\n\n// Event Listener for Tiles click\n\n    tiles.forEach((tile) => {\n        tile.addEventListener(\"click\", ()=> {\n            console.log(tile.id);\n        })\n    })\n\n\n\n\n\n//# sourceURL=webpack://project-template/./src/js/script.js?");
 
 /***/ })
 
