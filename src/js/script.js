@@ -1,6 +1,6 @@
 const tiles = document.querySelectorAll('.tile');
 let bomb_Map = [];
-const bomb_amount = parseInt(Math.random() * 6 + 1);
+const bomb_amount = parseInt(Math.random() * 10 + 1);
 let checked_fields = 0;
 
 
