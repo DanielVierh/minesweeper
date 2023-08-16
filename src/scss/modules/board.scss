@@ -1,6 +1,6 @@
 .field {
     width: 90%;
-    height: 85vh;
+    height: 90vh;
     background-color: $main-color;
     display: flex;
     flex-wrap: wrap;
@@ -10,6 +10,7 @@
 
     .tile {
         width: 20%;
+        height: 25px;
         background-color: white;
         border: 1px solid $main-color;
         margin: 3px;
@@ -18,5 +19,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-weight: bold;
     }
 }

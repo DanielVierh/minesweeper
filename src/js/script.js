@@ -41,7 +41,7 @@ tiles.forEach((tile) => {
     tile.addEventListener("click", () => {
         console.log('clicked: ', tile.id);
         const directions = ['up', 'up_right','right','down_right','down','down_left','left','up_left']
-        const tileId = tile.id; // Beispiel-ID
+        const tileId = tile.id; 
         let bombCounter = 0;
         for(let i = 0; i < directions.length; i++) {
             const direction = directions[i];
@@ -49,10 +49,8 @@ tiles.forEach((tile) => {
             if(adjacentAttribute === 'bomb') {
                 bombCounter++;
             }
-            console.log('adjacentAttribute', adjacentAttribute);
-            console.log('bombCounter', bombCounter);
+
             if(document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
-                console.warn("Booommm")
                 alert("Booooom \n Game Over")
                 for (let i = 0; i < bomb_Map.length; i++) {
                     const tileId = `${bomb_Map[i]}`;
@@ -60,7 +58,14 @@ tiles.forEach((tile) => {
                 }
                 break
             }
-            document.getElementById(tileId).innerHTML = bombCounter
+            document.getElementById(tileId).innerHTML = bombCounter;
+            if(bombCounter === 0) {
+                document.getElementById(tileId).style.backgroundColor = 'green'
+            }else if(bombCounter === 1) {
+                document.getElementById(tileId).style.backgroundColor = 'yellow'
+            }else {
+                document.getElementById(tileId).style.backgroundColor = 'orange'
+            }
         }
     })
 })
@@ -104,10 +109,8 @@ function getAdjacentTileAttribute(tileId, direction) {
     ) {
         const adjacentTileId = "tile_" + ((adjacentRow - 1) * 4 + adjacentColumn);
         const adjacentTile = document.getElementById(adjacentTileId);
-       // console.log('adjacentTile', adjacentTile);
         return adjacentTile.getAttribute("data-field");
     } else {
-        console.log('Gibt es nicht');
         return false;
     }
 }
