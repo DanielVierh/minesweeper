@@ -30,20 +30,20 @@ h1 {
 
 .field {
   width: 90%;
-  height: 90vh;
+  height: 80vh;
   background-color: rgba(28, 27, 27, 0.827);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   position: relative;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 .field .tile {
   width: 20%;
-  height: 25px;
+  height: 6%;
   background-color: white;
   border: 1px solid rgba(28, 27, 27, 0.827);
-  margin: 3px;
+  margin: 1px;
   border-radius: 3px;
   color: black;
   display: flex;

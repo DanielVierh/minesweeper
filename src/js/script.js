@@ -1,15 +1,17 @@
 const tiles = document.querySelectorAll('.tile');
 let bomb_Map = [];
+const bomb_amount = 3;
+let checked_fields = 0;
 
 
 window.onload = () => {
-    add_Bombs();
+    add_Bombs(bomb_amount);
     //helper_colorize_Bombs()
 }
 
 
-function add_Bombs() {
-    for (let i = 1; i <= 6; i++) {
+function add_Bombs(bomb_amount) {
+    for (let i = 1; i <= bomb_amount; i++) {
         const randomNumb = parseInt(Math.random() * tiles.length + 1);
         const tileId = `tile_${randomNumb}`
         if (bomb_Map.includes(tileId)) {
@@ -43,6 +45,7 @@ tiles.forEach((tile) => {
         const directions = ['up', 'up_right','right','down_right','down','down_left','left','up_left']
         const tileId = tile.id; 
         let bombCounter = 0;
+        let checked_fields = [];
         for(let i = 0; i < directions.length; i++) {
             const direction = directions[i];
             const adjacentAttribute = getAdjacentTileAttribute(tileId, direction);
