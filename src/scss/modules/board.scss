@@ -12,8 +12,11 @@
         width: 20%;
         background-color: white;
         border: 1px solid $main-color;
-        margin: 2px;
+        margin: 3px;
         border-radius: 3px;
         color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

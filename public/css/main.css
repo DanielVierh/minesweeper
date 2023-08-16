@@ -41,7 +41,10 @@ h1 {
   width: 20%;
   background-color: white;
   border: 1px solid rgba(28, 27, 27, 0.827);
-  margin: 2px;
+  margin: 3px;
   border-radius: 3px;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
