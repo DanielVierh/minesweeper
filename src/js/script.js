@@ -1,6 +1,6 @@
 const tiles = document.querySelectorAll('.tile');
 let bomb_Map = [];
-const bomb_amount = 4;
+const bomb_amount = parseInt(Math.random() * 6 + 1);
 let checked_fields = 0;
 
 
@@ -103,7 +103,11 @@ function getAdjacentTileAttribute(tileId, direction) {
     ) {
         const adjacentTileId = "tile_" + ((adjacentRow - 1) * 4 + adjacentColumn);
         const adjacentTile = document.getElementById(adjacentTileId);
-        return adjacentTile.getAttribute("data-field");
+        if(adjacentTile.getAttribute("data-field") === "bomb") {
+            return adjacentTile.getAttribute("data-field")
+        }else {
+            return adjacentTileId
+        }
     } else {
         return false;
     }
