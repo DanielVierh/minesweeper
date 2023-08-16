@@ -2,6 +2,7 @@ const tiles = document.querySelectorAll('.tile');
 let bomb_Map = [];
 const bomb_amount = parseInt(Math.random() * 10 + 1);
 let checked_fields = 0;
+const winner_Number = tiles.length - bomb_amount
 
 
 window.onload = () => {
@@ -39,32 +40,46 @@ tiles.forEach((tile) => {
     tile.addEventListener("click", () => {
         const directions = ['up', 'up_right', 'right', 'down_right', 'down', 'down_left', 'left', 'up_left']
         const tileId = tile.id;
-        let bombCounter = 0;
-        let checked_fields = [];
-        for (let i = 0; i < directions.length; i++) {
-            const direction = directions[i];
-            const adjacentAttribute = getAdjacentTileAttribute(tileId, direction);
-            if (adjacentAttribute === 'bomb') {
-                bombCounter++;
-            }
-
-            if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
-                alert("Booooom \n Game Over")
-                for (let i = 0; i < bomb_Map.length; i++) {
-                    const tileId = `${bomb_Map[i]}`;
-                    document.getElementById(tileId).style.backgroundColor = 'red'
+        if(document.getElementById(tileId).getAttribute("data-field") !== 'checked') {
+            checked_fields++;
+            let bombCounter = 0;
+            for (let i = 0; i < directions.length; i++) {
+                const direction = directions[i];
+                const adjacentAttribute = getAdjacentTileAttribute(tileId, direction);
+                if (adjacentAttribute === 'bomb') {
+                    bombCounter++;
                 }
-                break
-            }
-            document.getElementById(tileId).innerHTML = bombCounter;
-            if (bombCounter === 0) {
-                document.getElementById(tileId).style.backgroundColor = 'green'
-            } else if (bombCounter === 1) {
-                document.getElementById(tileId).style.backgroundColor = 'yellow'
-            } else {
-                document.getElementById(tileId).style.backgroundColor = 'orange'
+    
+                if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
+                    alert("Booooom \n Game Over")
+                    for (let i = 0; i < bomb_Map.length; i++) {
+                        const tileId = `${bomb_Map[i]}`;
+                        document.getElementById(tileId).style.backgroundColor = 'red'
+                    }
+                    break
+                }
+                document.getElementById(tileId).innerHTML = bombCounter;
+               
+                if (bombCounter === 0) {
+                    document.getElementById(tileId).style.backgroundColor = 'green'
+                } else if (bombCounter === 1) {
+                    document.getElementById(tileId).style.backgroundColor = 'yellow'
+                } else {
+                    document.getElementById(tileId).style.backgroundColor = 'orange'
+                }
+                document.getElementById(tileId).setAttribute("data-field", "checked");
+
+                if(checked_fields === winner_Number) {
+                    alert("Gewonnen :)")
+                    for (let i = 0; i < bomb_Map.length; i++) {
+                        const tileId = `${bomb_Map[i]}`;
+                        document.getElementById(tileId).style.backgroundColor = 'red'
+                    }
+                    break
+                }
             }
         }
+        
     })
 })
 
