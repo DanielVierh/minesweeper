@@ -41,7 +41,7 @@ h1 {
 .field .tile {
   width: 20%;
   height: 6%;
-  background-color: white;
+  background-color: rgba(138, 108, 82, 0.929);
   border: 1px solid rgba(28, 27, 27, 0.827);
   margin: 1px;
   border-radius: 3px;
@@ -53,7 +53,7 @@ h1 {
   font-size: 33px;
 }
 .field .tile.scanning {
-  background-color: lightblue;
+  background-color: rgb(235, 135, 135);
   position: relative;
 }
 .field .tile.scanning::after {
