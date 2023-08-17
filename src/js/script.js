@@ -58,6 +58,7 @@ tiles.forEach((tile) => {
                             document.getElementById(tileId).innerHTML = '💥';
                         }
                         alert("Booooom \n Game Over")
+                        disable_Tiles() 
                         break
                       
                     }
@@ -85,7 +86,6 @@ tiles.forEach((tile) => {
             }, 1100);
            
         }
-
     })
 })
 
@@ -136,3 +136,9 @@ function getAdjacentTileAttribute(tileId, direction) {
 
 
 
+
+function disable_Tiles() {
+    tiles.forEach((tile) => { 
+        document.getElementById(tile.id).setAttribute("data-field", "checked");
+    })
+}
