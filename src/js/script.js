@@ -40,46 +40,51 @@ tiles.forEach((tile) => {
     tile.addEventListener("click", () => {
         const directions = ['up', 'up_right', 'right', 'down_right', 'down', 'down_left', 'left', 'up_left']
         const tileId = tile.id;
-        if(document.getElementById(tileId).getAttribute("data-field") !== 'checked') {
+        if (document.getElementById(tileId).getAttribute("data-field") !== 'checked') {
             checked_fields++;
+            document.getElementById(tileId).classList.add("scanning")
             let bombCounter = 0;
-            for (let i = 0; i < directions.length; i++) {
-                const direction = directions[i];
-                const adjacentAttribute = getAdjacentTileAttribute(tileId, direction);
-                if (adjacentAttribute === 'bomb') {
-                    bombCounter++;
-                }
-    
-                if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
-                    alert("Booooom \n Game Over")
-                    for (let i = 0; i < bomb_Map.length; i++) {
-                        const tileId = `${bomb_Map[i]}`;
-                        document.getElementById(tileId).innerHTML = '💥';
+            setTimeout(() => {
+                for (let i = 0; i < directions.length; i++) {
+                    const direction = directions[i];
+                    const adjacentAttribute = getAdjacentTileAttribute(tileId, direction);
+                    if (adjacentAttribute === 'bomb') {
+                        bombCounter++;
                     }
-                    break
-                }
-                document.getElementById(tileId).innerHTML = bombCounter;
-               
-                if (bombCounter === 0) {
-                    document.getElementById(tileId).style.backgroundColor = 'green'
-                } else if (bombCounter === 1) {
-                    document.getElementById(tileId).style.backgroundColor = 'yellow'
-                } else {
-                    document.getElementById(tileId).style.backgroundColor = 'orange'
-                }
-                document.getElementById(tileId).setAttribute("data-field", "checked");
 
-                if(checked_fields === winner_Number) {
-                    alert("Gewonnen :)")
-                    for (let i = 0; i < bomb_Map.length; i++) {
-                        const tileId = `${bomb_Map[i]}`;
-                        document.getElementById(tileId).innerHTML = '💣'
+                    if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
+                        alert("Booooom \n Game Over")
+                        for (let i = 0; i < bomb_Map.length; i++) {
+                            const tileId = `${bomb_Map[i]}`;
+                            document.getElementById(tileId).innerHTML = '💥';
+                        }
+                        break
                     }
-                    break
+                    document.getElementById(tileId).innerHTML = bombCounter;
+
+                    if (bombCounter === 0) {
+                        document.getElementById(tileId).style.backgroundColor = 'green'
+                    } else if (bombCounter === 1) {
+                        document.getElementById(tileId).style.backgroundColor = 'yellow'
+                    } else {
+                        document.getElementById(tileId).style.backgroundColor = 'orange'
+                    }
+                    document.getElementById(tileId).setAttribute("data-field", "checked");
+
+                    if (checked_fields === winner_Number) {
+                        alert("Gewonnen :)")
+                        for (let i = 0; i < bomb_Map.length; i++) {
+                            const tileId = `${bomb_Map[i]}`;
+                            document.getElementById(tileId).innerHTML = '💣'
+                        }
+                        break
+                    }
                 }
-            }
+                document.getElementById(tileId).classList.remove("scanning")
+            }, 1100);
+           
         }
-        
+
     })
 })
 
@@ -118,9 +123,9 @@ function getAdjacentTileAttribute(tileId, direction) {
     ) {
         const adjacentTileId = "tile_" + ((adjacentRow - 1) * 4 + adjacentColumn);
         const adjacentTile = document.getElementById(adjacentTileId);
-        if(adjacentTile.getAttribute("data-field") === "bomb") {
+        if (adjacentTile.getAttribute("data-field") === "bomb") {
             return adjacentTile.getAttribute("data-field")
-        }else {
+        } else {
             return adjacentTileId
         }
     } else {
