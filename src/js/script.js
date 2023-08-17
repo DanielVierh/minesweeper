@@ -79,6 +79,7 @@ tiles.forEach((tile) => {
                             const tileId = `${bomb_Map[i]}`;
                             document.getElementById(tileId).innerHTML = '💣'
                         }
+                        disable_Tiles() 
                         break
                     }
                 }
