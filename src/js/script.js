@@ -1,6 +1,6 @@
 const tiles = document.querySelectorAll('.tile');
 let bomb_Map = [];
-const bomb_amount = parseInt(Math.random() * 10 + 1);
+const bomb_amount = parseInt(Math.random() * 7 + 4);
 let checked_fields = 0;
 const winner_Number = tiles.length - bomb_amount
 
@@ -54,7 +54,7 @@ tiles.forEach((tile) => {
                     alert("Booooom \n Game Over")
                     for (let i = 0; i < bomb_Map.length; i++) {
                         const tileId = `${bomb_Map[i]}`;
-                        document.getElementById(tileId).style.backgroundColor = 'red'
+                        document.getElementById(tileId).innerHTML = '💥';
                     }
                     break
                 }
@@ -73,7 +73,7 @@ tiles.forEach((tile) => {
                     alert("Gewonnen :)")
                     for (let i = 0; i < bomb_Map.length; i++) {
                         const tileId = `${bomb_Map[i]}`;
-                        document.getElementById(tileId).style.backgroundColor = 'red'
+                        document.getElementById(tileId).innerHTML = '💣'
                     }
                     break
                 }
