@@ -33,7 +33,7 @@
                 width: 100px;
                 background-color: red;
                 bottom: 0;
-                animation: scan_animation 1s ease;
+                animation: scan_animation 1s ease-in-out;
             }
         }
     }
@@ -42,10 +42,14 @@
 
 @keyframes scan_animation {
     0% {
-        bottom: 0%;
+        bottom: 3%;
+    }
+
+    50% {
+        bottom: 96%;
     }
 
     100% {
-        bottom: 100%;
+        bottom: 5%;
     }
 }

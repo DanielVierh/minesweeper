@@ -53,12 +53,13 @@ tiles.forEach((tile) => {
                     }
 
                     if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
-                        alert("Booooom \n Game Over")
                         for (let i = 0; i < bomb_Map.length; i++) {
                             const tileId = `${bomb_Map[i]}`;
                             document.getElementById(tileId).innerHTML = '💥';
                         }
+                        alert("Booooom \n Game Over")
                         break
+                      
                     }
                     document.getElementById(tileId).innerHTML = bombCounter;
 
