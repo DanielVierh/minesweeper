@@ -93,7 +93,7 @@ tiles.forEach((tile) => {
                     }
                 }
                 document.getElementById(tileId).classList.remove("scanning")
-            }, 1100);
+            }, 1300);
            
         }
     })

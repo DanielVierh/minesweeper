@@ -64,10 +64,11 @@ h1 {
   content: "";
   position: absolute;
   height: 2px;
-  width: 100px;
+  width: 70px;
   background-color: red;
+  box-shadow: 0 0 20px red;
   bottom: 0;
-  animation: scan_animation 1s ease-in-out;
+  animation: scan_animation 1.2s ease-in-out;
 }
 .field .tile.boom {
   position: relative;
