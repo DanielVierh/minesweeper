@@ -20,14 +20,15 @@
         justify-content: center;
         align-items: center;
         font-weight: bold;
-        font-size: 33px;
+        font-size: 24px;
+        
 
         &:nth-last-child(3n+0) {
             background-color: rgba(101, 76, 53, 0.929);  
         }
 
         &.scanning {
-            background-color: rgb(235, 135, 135);
+            background-color: rgb(56, 52, 52);
             position: relative;
 
             &::after {
