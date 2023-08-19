@@ -5,10 +5,11 @@ const bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
 let bomb_Map = [];
 let checked_fields = 0;
 const winner_Number = tiles.length - bomb_amount
+const btn_restart = document.getElementById("btn_restart");
 
 window.onload = () => {
     add_Bombs(bomb_amount);
-    //helper_colorize_Bombs()
+   //helper_colorize_Bombs()
 }
 
 function add_Bombs(bomb_amount) {
@@ -61,6 +62,10 @@ tiles.forEach((tile) => {
                         }
                         document.getElementById(tileId).classList.add ("boom");
                         disable_Tiles() 
+                        setTimeout(() => {
+                            document.getElementById("output_result").innerHTML = "Verloren 🥵";
+                            document.getElementById("result_window").classList.add("active");
+                        }, 2000);
                         break
                       
                     }
@@ -82,13 +87,16 @@ tiles.forEach((tile) => {
                     
 
                     if (checked_fields === winner_Number) {
-                        alert("Gewonnen :)");
                         document.getElementById(tileId).innerHTML = '0'
                         for (let i = 0; i < bomb_Map.length; i++) {
                             const tileId = `${bomb_Map[i]}`;
                             document.getElementById(tileId).innerHTML = '💣'
                         }
                         disable_Tiles() 
+                        setTimeout(() => {
+                            document.getElementById("output_result").innerHTML = "Gewonnen 😀";
+                            document.getElementById("result_window").classList.add("active");
+                        }, 2000);
                         break
                     }
                 }
@@ -152,3 +160,8 @@ function disable_Tiles() {
         document.getElementById(tile.id).setAttribute("data-status", "checked");
     })
 }
+
+
+btn_restart.addEventListener("click", ()=> {
+    window.location.reload();
+})

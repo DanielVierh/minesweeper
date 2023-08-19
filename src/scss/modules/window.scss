@@ -1,6 +1,37 @@
 .alert-window {
-    
 
+    display: none;
+    
+    &.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    }
+
+
+
+    .restart-button {
+        background-color: green;
+        border: 5px solid black;
+        padding: 10px 20px;
+        width: fit-content;
+        border-radius: 15px;
+        font-weight: bold;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.548);
+    }
 }
 
 
