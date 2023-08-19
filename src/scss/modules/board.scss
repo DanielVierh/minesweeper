@@ -22,6 +22,10 @@
         font-weight: bold;
         font-size: 33px;
 
+        &:nth-last-child(3n+0) {
+            background-color: rgba(101, 76, 53, 0.929);  
+        }
+
         &.scanning {
             background-color: rgb(235, 135, 135);
             position: relative;
