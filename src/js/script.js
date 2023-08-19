@@ -41,10 +41,9 @@ tiles.forEach((tile) => {
     tile.addEventListener("click", () => {
         const directions = ['up', 'up_right', 'right', 'down_right', 'down', 'down_left', 'left', 'up_left']
         const tileId = tile.id;
-        if (document.getElementById(tileId).getAttribute("data-field") !== 'checked') {
-            document.getElementById(tileId).setAttribute("data-field", "checked");
+        if (document.getElementById(tileId).getAttribute("data-status") !== 'checked') {
+            document.getElementById(tileId).setAttribute("data-status", "checked");
             checked_fields++;
-            console.log(`winner_Number ${checked_fields}/${winner_Number} - tile${tileId} bombs${bomb_amount}/tiles${tiles.length}`); //FIXME - 
             document.getElementById(tileId).classList.add("scanning")
             let bombCounter = 0;
             setTimeout(() => {
@@ -60,7 +59,7 @@ tiles.forEach((tile) => {
                             const tileId = `${bomb_Map[i]}`;
                             document.getElementById(tileId).innerHTML = '💥';
                         }
-                        alert("Booooom \n Game Over")
+                        document.getElementById(tileId).classList.add ("boom");
                         disable_Tiles() 
                         break
                       
@@ -150,6 +149,6 @@ function getAdjacentTileAttribute(tileId, direction) {
 
 function disable_Tiles() {
     tiles.forEach((tile) => { 
-        document.getElementById(tile.id).setAttribute("data-field", "checked");
+        document.getElementById(tile.id).setAttribute("data-status", "checked");
     })
 }

@@ -41,6 +41,26 @@
                 animation: scan_animation 1s ease-in-out;
             }
         }
+
+        &.boom {
+            position: relative;
+
+            &::after {
+                content: '💥';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                
+                bottom: 0;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 0px;
+                animation: explosion .6s ease;
+            }
+        }
     }
 }
 
@@ -56,5 +76,15 @@
 
     100% {
         bottom: 5%;
+    }
+}
+
+@keyframes explosion {
+    from {
+        font-size: 2px;
+    }
+
+    to {
+        font-size: 200px;
     }
 }
