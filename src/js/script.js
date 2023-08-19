@@ -67,7 +67,7 @@ tiles.forEach((tile) => {
                     document.getElementById(tileId).innerHTML = bombCounter;
                     document.getElementById(tileId).style.backgroundColor = '#4a2b16'
                     if (bombCounter === 0) {
-                        document.getElementById(tileId).style.color = 'lightgreen'
+                        document.getElementById(tileId).style.color = 'grey'
                         if(parseInt(Math.random() * 2) === 1) {
                             document.getElementById(tileId).style.backgroundColor = 'rgb(73 45 21 / 93%)'
                         }else {
