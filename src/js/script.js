@@ -9,6 +9,7 @@ const btn_restart = document.getElementById("btn_restart");
 
 window.onload = () => {
     add_Bombs(bomb_amount);
+    random_tile_color();
     //helper_colorize_Bombs()
 }
 
@@ -24,6 +25,17 @@ function add_Bombs(bomb_amount) {
         }
     }
 }
+
+function random_tile_color() {
+    tiles.forEach((tile) => {
+        if (parseInt(Math.random() * 2) === 1) {
+            document.getElementById(tile.id).style.backgroundColor = 'rgba(101, 76, 53, 0.929)'
+        } else {
+            document.getElementById(tile.id).style.backgroundColor = 'rgba(138, 108, 82, 0.929)'
+        }
+    })
+}
+
 
 function helper_colorize_Bombs() {
     for (let i = 0; i < bomb_Map.length; i++) {
