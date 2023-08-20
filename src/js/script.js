@@ -9,7 +9,7 @@ const btn_restart = document.getElementById("btn_restart");
 
 window.onload = () => {
     add_Bombs(bomb_amount);
-   //helper_colorize_Bombs()
+    //helper_colorize_Bombs()
 }
 
 function add_Bombs(bomb_amount) {
@@ -60,22 +60,22 @@ tiles.forEach((tile) => {
                             const tileId = `${bomb_Map[i]}`;
                             document.getElementById(tileId).innerHTML = '💥';
                         }
-                        document.getElementById(tileId).classList.add ("boom");
-                        disable_Tiles() 
+                        document.getElementById(tileId).classList.add("boom");
+                        disable_Tiles()
                         setTimeout(() => {
                             document.getElementById("output_result").innerHTML = "Verloren 🥵";
                             document.getElementById("result_window").classList.add("active");
                         }, 2000);
                         break
-                      
+
                     }
                     document.getElementById(tileId).innerHTML = bombCounter;
                     document.getElementById(tileId).style.backgroundColor = '#4a2b16'
                     if (bombCounter === 0) {
                         document.getElementById(tileId).style.color = 'grey'
-                        if(parseInt(Math.random() * 2) === 1) {
+                        if (parseInt(Math.random() * 2) === 1) {
                             document.getElementById(tileId).style.backgroundColor = 'rgb(73 45 21 / 93%)'
-                        }else {
+                        } else {
                             document.getElementById(tileId).style.backgroundColor = 'rgba(62, 38, 17, 0.93)'
                         }
                     } else if (bombCounter === 1) {
@@ -84,7 +84,7 @@ tiles.forEach((tile) => {
                     } else {
                         document.getElementById(tileId).style.color = 'orange'
                     }
-                    
+
 
                     if (checked_fields === winner_Number) {
                         document.getElementById(tileId).innerHTML = '0'
@@ -92,7 +92,7 @@ tiles.forEach((tile) => {
                             const tileId = `${bomb_Map[i]}`;
                             document.getElementById(tileId).innerHTML = '💣'
                         }
-                        disable_Tiles() 
+                        disable_Tiles()
                         setTimeout(() => {
                             document.getElementById("output_result").innerHTML = "Gewonnen 😀";
                             document.getElementById("result_window").classList.add("active");
@@ -102,14 +102,14 @@ tiles.forEach((tile) => {
                 }
                 document.getElementById(tileId).classList.remove("scanning")
             }, 1300);
-           
+
         }
     })
 })
 
 function getAdjacentTileAttribute(tileId, direction) {
-    const row = Math.floor((parseInt(tileId.split("_")[1]) - 1) / 4) + 1;
-    const column = (parseInt(tileId.split("_")[1]) - 1) % 4 + 1;
+    const row = Math.floor((parseInt(tileId.split("_")[1]) - 1) / 9) + 1;
+    const column = (parseInt(tileId.split("_")[1]) - 1) % 9 + 1;
 
     let adjacentRow = row;
     let adjacentColumn = column;
@@ -137,10 +137,10 @@ function getAdjacentTileAttribute(tileId, direction) {
     }
 
     if (
-        adjacentRow >= 1 && adjacentRow <= 15 &&
-        adjacentColumn >= 1 && adjacentColumn <= 4
+        adjacentRow >= 1 && adjacentRow <= 10 &&
+        adjacentColumn >= 1 && adjacentColumn <= 9
     ) {
-        const adjacentTileId = "tile_" + ((adjacentRow - 1) * 4 + adjacentColumn);
+        const adjacentTileId = "tile_" + ((adjacentRow - 1) * 9 + adjacentColumn);
         const adjacentTile = document.getElementById(adjacentTileId);
         if (adjacentTile.getAttribute("data-field") === "bomb") {
             return adjacentTile.getAttribute("data-field")
@@ -156,12 +156,12 @@ function getAdjacentTileAttribute(tileId, direction) {
 
 
 function disable_Tiles() {
-    tiles.forEach((tile) => { 
+    tiles.forEach((tile) => {
         document.getElementById(tile.id).setAttribute("data-status", "checked");
     })
 }
 
 
-btn_restart.addEventListener("click", ()=> {
+btn_restart.addEventListener("click", () => {
     window.location.reload();
 })
