@@ -65,7 +65,7 @@ tiles.forEach((tile) => {
                         setTimeout(() => {
                             document.getElementById("output_result").innerHTML = "Verloren 🥵";
                             document.getElementById("result_window").classList.add("active");
-                        }, 2000);
+                        }, 1500);
                         break
 
                     }
@@ -96,7 +96,7 @@ tiles.forEach((tile) => {
                         setTimeout(() => {
                             document.getElementById("output_result").innerHTML = "Gewonnen 😀";
                             document.getElementById("result_window").classList.add("active");
-                        }, 2000);
+                        }, 1500);
                         break
                     }
                 }
