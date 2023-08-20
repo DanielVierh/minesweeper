@@ -1,7 +1,7 @@
 .alert-window {
 
     display: none;
-    
+
     &.active {
     display: block;
     position: fixed;
@@ -31,7 +31,6 @@
         letter-spacing: 2.5px;
         text-transform: uppercase;
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.548);
+        cursor: pointer;
     }
 }
-
-
