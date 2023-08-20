@@ -53,6 +53,14 @@ tiles.forEach((tile) => {
                     const adjacentAttribute = getAdjacentTileAttribute(tileId, direction);
                     if (adjacentAttribute === 'bomb') {
                         bombCounter++;
+                    } else if (adjacentAttribute !== false && adjacentAttribute !== 'checked') {
+                        //FIXME - ⛳️
+                        console.log(adjacentAttribute);
+                        if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
+                            if (parseInt(Math.random() * 10) === 1) {
+                                document.getElementById(adjacentAttribute).innerHTML = '⛳️'
+                            }
+                        }
                     }
 
                     if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
@@ -65,7 +73,7 @@ tiles.forEach((tile) => {
                         setTimeout(() => {
                             document.getElementById("output_result").innerHTML = "Verloren 🥵";
                             document.getElementById("result_window").classList.add("active");
-                        }, 1500);
+                        }, 2200);
                         break
 
                     }
@@ -85,7 +93,7 @@ tiles.forEach((tile) => {
                         document.getElementById(tileId).style.color = 'orange'
                     }
 
-
+                    // Gewonnen
                     if (checked_fields === winner_Number) {
                         document.getElementById(tileId).innerHTML = '0'
                         for (let i = 0; i < bomb_Map.length; i++) {
@@ -96,13 +104,12 @@ tiles.forEach((tile) => {
                         setTimeout(() => {
                             document.getElementById("output_result").innerHTML = "Gewonnen 😀";
                             document.getElementById("result_window").classList.add("active");
-                        }, 1500);
+                        }, 2200);
                         break
                     }
                 }
                 document.getElementById(tileId).classList.remove("scanning")
             }, 1300);
-
         }
     })
 })
