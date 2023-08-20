@@ -66,8 +66,8 @@ tiles.forEach((tile) => {
                     if (adjacentAttribute === 'bomb') {
                         bombCounter++;
                     } else if (adjacentAttribute !== false && adjacentAttribute !== 'checked') {
-                        //FIXME - ⛳️
-                        console.log(adjacentAttribute);
+                        
+                        // Adds random secure marker 
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
                             if (parseInt(Math.random() * 7) === 1) {
                                 document.getElementById(adjacentAttribute).innerHTML = '⛳️'
@@ -75,6 +75,7 @@ tiles.forEach((tile) => {
                         }
                     }
 
+                    // if Game Over
                     if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
                         for (let i = 0; i < bomb_Map.length; i++) {
                             const tileId = `${bomb_Map[i]}`;
@@ -87,10 +88,11 @@ tiles.forEach((tile) => {
                             document.getElementById("result_window").classList.add("active");
                         }, 2200);
                         break
-
                     }
+
                     document.getElementById(tileId).innerHTML = bombCounter;
                     document.getElementById(tileId).style.backgroundColor = '#4a2b16'
+                    
                     if (bombCounter === 0) {
                         document.getElementById(tileId).style.color = 'grey'
                         if (parseInt(Math.random() * 2) === 1) {
