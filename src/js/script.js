@@ -1,5 +1,5 @@
 const tiles = document.querySelectorAll('.tile');
-const min_bombs = 4;
+const min_bombs = 7;
 const max_bombs = 10;
 const bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
 let bomb_Map = [];
@@ -57,7 +57,7 @@ tiles.forEach((tile) => {
                         //FIXME - ⛳️
                         console.log(adjacentAttribute);
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
-                            if (parseInt(Math.random() * 10) === 1) {
+                            if (parseInt(Math.random() * 7) === 1) {
                                 document.getElementById(adjacentAttribute).innerHTML = '⛳️'
                             }
                         }
