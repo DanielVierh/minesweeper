@@ -80,13 +80,17 @@ tiles.forEach((tile) => {
                         for (let i = 0; i < bomb_Map.length; i++) {
                             const tileId = `${bomb_Map[i]}`;
                             document.getElementById(tileId).innerHTML = '💥';
+                            setTimeout(() => {
+                                document.getElementById(tileId).classList.add("boom");
+                            }, 600);
+                           
                         }
                         document.getElementById(tileId).classList.add("boom");
                         disable_Tiles()
                         setTimeout(() => {
                             document.getElementById("output_result").innerHTML = "Verloren 🥵";
                             document.getElementById("result_window").classList.add("active");
-                        }, 2200);
+                        }, 3200);
                         break
                     }
 
