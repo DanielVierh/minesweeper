@@ -1,6 +1,6 @@
 const tiles = document.querySelectorAll('.tile');
 const min_bombs = 7;
-const max_bombs = 10;
+const max_bombs = 14;
 const bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
 let bomb_Map = [];
 let checked_fields = 0;
