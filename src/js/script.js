@@ -69,7 +69,7 @@ tiles.forEach((tile) => {
                         
                         // Adds random secure marker 
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
-                            if (parseInt(Math.random() * 7) === 1) {
+                            if (parseInt(Math.random() * 7) === 1 || parseInt(Math.random() * 7) === 2) {
                                 document.getElementById(adjacentAttribute).innerHTML = '⛳️'
                             }
                         }
@@ -92,7 +92,7 @@ tiles.forEach((tile) => {
 
                     document.getElementById(tileId).innerHTML = bombCounter;
                     document.getElementById(tileId).style.backgroundColor = '#4a2b16'
-                    
+
                     if (bombCounter === 0) {
                         document.getElementById(tileId).style.color = 'grey'
                         if (parseInt(Math.random() * 2) === 1) {
