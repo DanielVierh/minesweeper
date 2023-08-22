@@ -28,15 +28,15 @@
         &.scanning {
             background-color: rgb(56, 52, 52);
             position: relative;
-            box-shadow: 0 0 60px red, inset 0 0 15px red;
+            box-shadow: 0 0 60px greenyellow, inset 0 0 15px greenyellow;
 
             &::after {
                 content: '';
                 position: absolute;
                 height: 2px;
                 width: 50px;
-                background-color: red;
-                box-shadow: 0 0 20px red;
+                background-color: greenyellow;
+                box-shadow: 0 0 20px greenyellow;
                 bottom: 0;
                 animation: scan_animation 1.2s ease-in-out;
             }
