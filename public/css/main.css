@@ -59,6 +59,7 @@ h1 {
 .field .tile.scanning {
   background-color: rgb(56, 52, 52);
   position: relative;
+  box-shadow: 0 0 60px red, inset 0 0 15px red;
 }
 .field .tile.scanning::after {
   content: "";
