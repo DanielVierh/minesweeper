@@ -34,7 +34,7 @@ function first_hints() {
                     i += 15
                     counter++;
                 }
-            }else {
+            } else {
                 break
             }
         }
@@ -44,8 +44,8 @@ function first_hints() {
 function place_shield() {
     let shieldIsSet = false;
     while (shieldIsSet === false) {
-        const randomNumb = parseInt(Math.random() * tiles.length + 1); 
-        if(document.getElementById(`tile_${randomNumb}`).getAttribute("data-field") !== 'bomb') {
+        const randomNumb = parseInt(Math.random() * tiles.length + 1);
+        if (document.getElementById(`tile_${randomNumb}`).getAttribute("data-field") !== 'bomb') {
             document.getElementById(`tile_${randomNumb}`).setAttribute("data-field", "shield")
             shieldIsSet = true;
         }
@@ -69,9 +69,6 @@ function random_tile_color() {
     tiles.forEach((tile) => {
         if (parseInt(Math.random() * 2) === 1) {
             document.getElementById(tile.id).classList.add("tile1-2")
-            //document.getElementById(tile.id).style.backgroundColor = 'rgba(101, 76, 53, 0.929)'
-        } else {
-            //document.getElementById(tile.id).style.backgroundColor = 'rgba(138, 108, 82, 0.929)'
         }
     })
 }
@@ -116,11 +113,11 @@ tiles.forEach((tile) => {
 
                         // Adds random secure marker 
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
-                            if(many_mines) {
+                            if (many_mines) {
                                 if (parseInt(Math.random() * 7) <= 2) {
                                     document.getElementById(adjacentAttribute).innerHTML = '⛳️'
                                 }
-                            }else {
+                            } else {
                                 if (parseInt(Math.random() * 7) === 1) {
                                     document.getElementById(adjacentAttribute).innerHTML = '⛳️'
                                 }
@@ -128,7 +125,7 @@ tiles.forEach((tile) => {
                         }
                     }
 
-                    if(document.getElementById(tileId).getAttribute("data-field") === 'shield') {
+                    if (document.getElementById(tileId).getAttribute("data-field") === 'shield') {
                         shield = true;
                         lbl_shield.innerHTML = '🛡';
                         lbl_shield.classList.add('active')
@@ -136,7 +133,7 @@ tiles.forEach((tile) => {
 
                     // if Bomb
                     if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
-                        if(shield === true) {
+                        if (shield === true) {
                             setTimeout(() => {
                                 document.getElementById(tileId).innerHTML = '🛡';
                             }, 2000);
@@ -147,14 +144,14 @@ tiles.forEach((tile) => {
                             checked_fields--;
                             shield = false;
                             break
-                        }else {
+                        } else {
                             for (let i = 0; i < bomb_Map.length; i++) {
                                 const tileId = `${bomb_Map[i]}`;
                                 document.getElementById(tileId).innerHTML = '💥';
                                 setTimeout(() => {
                                     document.getElementById(tileId).classList.add("boom");
                                 }, 600);
-    
+
                             }
                             document.getElementById(tileId).classList.add("boom");
                             disable_Tiles()
@@ -167,23 +164,16 @@ tiles.forEach((tile) => {
                     }
 
                     document.getElementById(tileId).innerHTML = bombCounter;
-                    //document.getElementById(tileId).style.backgroundColor = '#4a2b16'
                     document.getElementById(tileId).classList.add("digged")
 
                     if (bombCounter === 0) {
-                       
-                         document.getElementById(tileId).style.color = 'white'
-                        // if (parseInt(Math.random() * 2) === 1) {
-                        //     document.getElementById(tileId).style.backgroundColor = 'rgb(73 45 21 / 93%)'
-                        // } else {
-                        //     document.getElementById(tileId).style.backgroundColor = 'rgba(62, 38, 17, 0.93)'
-                        // }
+                        document.getElementById(tileId).style.color = 'white'
                     } else if (bombCounter === 1) {
                         document.getElementById(tileId).style.color = 'yellow'
-                        //document.getElementById(tileId).style.backgroundColor = 'rgb(105 67 41)'
+                        document.getElementById(tileId).style.textShadow = '0px 0px 5px black'
                     } else {
-                        document.getElementById(tileId).style.color = 'orange'
-                        document.getElementById(tileId).style.textShadow = '0 0 3px black'
+                        document.getElementById(tileId).style.color = 'yellow'
+                        document.getElementById(tileId).style.textShadow = '0px 0px 5px black'
                     }
 
                     // Gewonnen
