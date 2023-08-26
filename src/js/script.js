@@ -6,8 +6,11 @@ let bomb_Map = [];
 let checked_fields = 0;
 const winner_Number = tiles.length - bomb_amount
 const btn_restart = document.getElementById("btn_restart");
+const lbl_mines_amount = document.getElementById("lbl_mines_amount");
+
 
 window.onload = () => {
+    lbl_mines_amount.innerHTML = `${bomb_amount} Minen`
     add_Bombs(bomb_amount);
     random_tile_color();
     //helper_colorize_Bombs()

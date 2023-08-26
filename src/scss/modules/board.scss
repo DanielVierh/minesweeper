@@ -64,6 +64,15 @@
     }
 }
 
+.mineslabel {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    color: white;
+    font-weight: bold;
+    z-index: 100;
+}
+
 
 @keyframes scan_animation {
     0% {
