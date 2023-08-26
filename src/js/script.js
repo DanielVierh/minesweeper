@@ -43,10 +43,10 @@ function helper_colorize_Bombs() {
         document.getElementById(tileId).style.backgroundColor = 'red'
     }
 
-    // for (let i = 1; i <= tiles.length; i++) {
-    //     const tileId = `${`tile_${i}`}`;
-    //     document.getElementById(tileId).innerHTML = i
-    // }
+    for (let i = 1; i <= tiles.length; i++) {
+        const tileId = `${`tile_${i}`}`;
+        document.getElementById(tileId).innerHTML = i
+    }
 }
 
 // Event Listener for Tiles click
@@ -69,7 +69,7 @@ tiles.forEach((tile) => {
                         
                         // Adds random secure marker 
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
-                            if (parseInt(Math.random() * 7) === 1 || parseInt(Math.random() * 7) === 2) {
+                            if (parseInt(Math.random() * 7) === 1) {
                                 document.getElementById(adjacentAttribute).innerHTML = '⛳️'
                             }
                         }
@@ -88,7 +88,7 @@ tiles.forEach((tile) => {
                         document.getElementById(tileId).classList.add("boom");
                         disable_Tiles()
                         setTimeout(() => {
-                            document.getElementById("output_result").innerHTML = "Verloren 🥵";
+                            document.getElementById("output_result").innerHTML = `Verloren 🥵 </br> </br> ${bomb_amount} Minen sind explodiert`;
                             document.getElementById("result_window").classList.add("active");
                         }, 3200);
                         break
@@ -120,7 +120,7 @@ tiles.forEach((tile) => {
                         }
                         disable_Tiles()
                         setTimeout(() => {
-                            document.getElementById("output_result").innerHTML = "Gewonnen 😀";
+                            document.getElementById("output_result").innerHTML = `Gewonnen 😀 </br> </br> Du hast alle ${bomb_amount} Minen gesichert`;
                             document.getElementById("result_window").classList.add("active");
                         }, 2200);
                         break
