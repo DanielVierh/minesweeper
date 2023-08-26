@@ -17,7 +17,7 @@ window.onload = () => {
     add_Bombs(bomb_amount);
     random_tile_color();
     first_hints();
-   // helper_colorize_Bombs()
+    //helper_colorize_Bombs()
 }
 
 // Discover 4 fields, that are minefree
@@ -102,6 +102,7 @@ tiles.forEach((tile) => {
         if (document.getElementById(tileId).getAttribute("data-status") !== 'checked') {
             document.getElementById(tileId).setAttribute("data-status", "checked");
             checked_fields++;
+            console.log(`${checked_fields}/${winner_Number}`);
             document.getElementById(tileId).classList.add("scanning")
             let bombCounter = 0;
             setTimeout(() => {
@@ -142,6 +143,7 @@ tiles.forEach((tile) => {
                             lbl_shield.classList.remove('active')
                             lbl_shield.classList.add('active')
                             lbl_shield.innerHTML = '';
+                            checked_fields--;
                             shield = false;
                             break
                         }else {
