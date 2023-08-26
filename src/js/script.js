@@ -68,9 +68,10 @@ function add_Bombs(bomb_amount) {
 function random_tile_color() {
     tiles.forEach((tile) => {
         if (parseInt(Math.random() * 2) === 1) {
-            document.getElementById(tile.id).style.backgroundColor = 'rgba(101, 76, 53, 0.929)'
+            document.getElementById(tile.id).classList.add("tile1-2")
+            //document.getElementById(tile.id).style.backgroundColor = 'rgba(101, 76, 53, 0.929)'
         } else {
-            document.getElementById(tile.id).style.backgroundColor = 'rgba(138, 108, 82, 0.929)'
+            //document.getElementById(tile.id).style.backgroundColor = 'rgba(138, 108, 82, 0.929)'
         }
     })
 }
@@ -79,7 +80,7 @@ function random_tile_color() {
 function helper_colorize_Bombs() {
     for (let i = 0; i < bomb_Map.length; i++) {
         const tileId = `${bomb_Map[i]}`;
-        document.getElementById(tileId).style.backgroundColor = 'red'
+        document.getElementById(tileId).style.color = 'red'
     }
 
     for (let i = 1; i < tiles.length; i++) {
@@ -166,20 +167,23 @@ tiles.forEach((tile) => {
                     }
 
                     document.getElementById(tileId).innerHTML = bombCounter;
-                    document.getElementById(tileId).style.backgroundColor = '#4a2b16'
+                    //document.getElementById(tileId).style.backgroundColor = '#4a2b16'
+                    document.getElementById(tileId).classList.add("digged")
 
                     if (bombCounter === 0) {
-                        document.getElementById(tileId).style.color = 'grey'
-                        if (parseInt(Math.random() * 2) === 1) {
-                            document.getElementById(tileId).style.backgroundColor = 'rgb(73 45 21 / 93%)'
-                        } else {
-                            document.getElementById(tileId).style.backgroundColor = 'rgba(62, 38, 17, 0.93)'
-                        }
+                       
+                         document.getElementById(tileId).style.color = 'white'
+                        // if (parseInt(Math.random() * 2) === 1) {
+                        //     document.getElementById(tileId).style.backgroundColor = 'rgb(73 45 21 / 93%)'
+                        // } else {
+                        //     document.getElementById(tileId).style.backgroundColor = 'rgba(62, 38, 17, 0.93)'
+                        // }
                     } else if (bombCounter === 1) {
                         document.getElementById(tileId).style.color = 'yellow'
-                        document.getElementById(tileId).style.backgroundColor = 'rgb(105 67 41)'
+                        //document.getElementById(tileId).style.backgroundColor = 'rgb(105 67 41)'
                     } else {
                         document.getElementById(tileId).style.color = 'orange'
+                        document.getElementById(tileId).style.textShadow = '0 0 3px black'
                     }
 
                     // Gewonnen

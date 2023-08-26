@@ -55,6 +55,13 @@ h1 {
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
+  background-image: url(../javascript/262b0010152abce30852.png);
+}
+.field .tile.tile1-2 {
+  background-image: url(../javascript/e9fe16c9a0d5aee5de38.png);
+}
+.field .tile.digged {
+  background-image: url(../javascript/74bebc283e73a60e01b8.png);
 }
 .field .tile.scanning {
   background-color: rgb(56, 52, 52);
