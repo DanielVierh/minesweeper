@@ -13,7 +13,31 @@ window.onload = () => {
     lbl_mines_amount.innerHTML = `${bomb_amount} Minen`
     add_Bombs(bomb_amount);
     random_tile_color();
+    first_hints();
     //helper_colorize_Bombs()
+}
+
+//!###########################################
+//ANCHOR - //!BAUSTELLE
+//!###########################################
+
+function first_hints() {
+    if (bomb_amount >= 15) {
+        const amount_of_helpers = 4
+        let counter = 0;
+
+        for (let i = 5; i < tiles.length; i++) {
+            if (counter < amount_of_helpers) {
+                if (document.getElementById(`tile_${i}`).getAttribute("data-field") !== 'bomb') {
+                    document.getElementById(`tile_${i}`).innerHTML = '⛳️';
+                    i += 15
+                    counter++;
+                }
+            }else {
+                break
+            }
+        }
+    }
 }
 
 function add_Bombs(bomb_amount) {
@@ -69,7 +93,7 @@ tiles.forEach((tile) => {
                     if (adjacentAttribute === 'bomb') {
                         bombCounter++;
                     } else if (adjacentAttribute !== false && adjacentAttribute !== 'checked') {
-                        
+
                         // Adds random secure marker 
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
                             if (parseInt(Math.random() * 7) === 1) {
@@ -86,7 +110,7 @@ tiles.forEach((tile) => {
                             setTimeout(() => {
                                 document.getElementById(tileId).classList.add("boom");
                             }, 600);
-                           
+
                         }
                         document.getElementById(tileId).classList.add("boom");
                         disable_Tiles()
