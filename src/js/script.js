@@ -7,6 +7,7 @@ let checked_fields = 0;
 const winner_Number = tiles.length - bomb_amount
 const btn_restart = document.getElementById("btn_restart");
 const lbl_mines_amount = document.getElementById("lbl_mines_amount");
+let many_mines = false;
 
 
 window.onload = () => {
@@ -17,12 +18,10 @@ window.onload = () => {
     //helper_colorize_Bombs()
 }
 
-//!###########################################
-//ANCHOR - //!BAUSTELLE
-//!###########################################
-
+// Discover 4 fields, that are minefree
 function first_hints() {
     if (bomb_amount >= 15) {
+        many_mines = true;
         const amount_of_helpers = 4
         let counter = 0;
 
@@ -96,8 +95,14 @@ tiles.forEach((tile) => {
 
                         // Adds random secure marker 
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
-                            if (parseInt(Math.random() * 7) === 1) {
-                                document.getElementById(adjacentAttribute).innerHTML = '⛳️'
+                            if(many_mines) {
+                                if (parseInt(Math.random() * 7) <= 2) {
+                                    document.getElementById(adjacentAttribute).innerHTML = '⛳️'
+                                }
+                            }else {
+                                if (parseInt(Math.random() * 7) === 1) {
+                                    document.getElementById(adjacentAttribute).innerHTML = '⛳️'
+                                }
                             }
                         }
                     }
