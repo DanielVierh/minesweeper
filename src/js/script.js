@@ -7,7 +7,9 @@ let checked_fields = 0;
 const winner_Number = tiles.length - bomb_amount
 const btn_restart = document.getElementById("btn_restart");
 const lbl_mines_amount = document.getElementById("lbl_mines_amount");
+const lbl_shield = document.getElementById("lbl_shield");
 let many_mines = false;
+let shield = false;
 
 
 window.onload = () => {
@@ -15,7 +17,7 @@ window.onload = () => {
     add_Bombs(bomb_amount);
     random_tile_color();
     first_hints();
-    //helper_colorize_Bombs()
+   // helper_colorize_Bombs()
 }
 
 // Discover 4 fields, that are minefree
@@ -24,7 +26,7 @@ function first_hints() {
         many_mines = true;
         const amount_of_helpers = 4
         let counter = 0;
-
+        place_shield();
         for (let i = 5; i < tiles.length; i++) {
             if (counter < amount_of_helpers) {
                 if (document.getElementById(`tile_${i}`).getAttribute("data-field") !== 'bomb') {
@@ -39,10 +41,21 @@ function first_hints() {
     }
 }
 
+function place_shield() {
+    let shieldIsSet = false;
+    while (shieldIsSet === false) {
+        const randomNumb = parseInt(Math.random() * tiles.length + 1); 
+        if(document.getElementById(`tile_${randomNumb}`).getAttribute("data-field") !== 'bomb') {
+            document.getElementById(`tile_${randomNumb}`).setAttribute("data-field", "shield")
+            shieldIsSet = true;
+        }
+    }
+}
+
 function add_Bombs(bomb_amount) {
     for (let i = 1; i <= bomb_amount; i++) {
         const randomNumb = parseInt(Math.random() * tiles.length + 1);
-        const tileId = `tile_${randomNumb}`
+        const tileId = `tile_${randomNumb}`;
         if (bomb_Map.includes(tileId)) {
             i = i -= 1;
         } else {
@@ -67,6 +80,12 @@ function helper_colorize_Bombs() {
     for (let i = 0; i < bomb_Map.length; i++) {
         const tileId = `${bomb_Map[i]}`;
         document.getElementById(tileId).style.backgroundColor = 'red'
+    }
+
+    for (let i = 1; i < tiles.length; i++) {
+        if (document.getElementById(`tile_${i}`).getAttribute('data-field') === 'shield') {
+            document.getElementById(`tile_${i}`).style.backgroundColor = 'blue'
+        }
     }
 
     for (let i = 1; i <= tiles.length; i++) {
@@ -107,23 +126,41 @@ tiles.forEach((tile) => {
                         }
                     }
 
-                    // if Game Over
-                    if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
-                        for (let i = 0; i < bomb_Map.length; i++) {
-                            const tileId = `${bomb_Map[i]}`;
-                            document.getElementById(tileId).innerHTML = '💥';
-                            setTimeout(() => {
-                                document.getElementById(tileId).classList.add("boom");
-                            }, 600);
+                    if(document.getElementById(tileId).getAttribute("data-field") === 'shield') {
+                        shield = true;
+                        lbl_shield.innerHTML = '🛡';
+                        lbl_shield.classList.add('active')
+                    }
 
+                    // if Bomb
+                    if (document.getElementById(tileId).getAttribute("data-field") === 'bomb') {
+                        if(shield === true) {
+                            setTimeout(() => {
+                                document.getElementById(tileId).innerHTML = '🛡';
+                            }, 2000);
+                            document.getElementById(tileId).innerHTML = '💥';
+                            lbl_shield.classList.remove('active')
+                            lbl_shield.classList.add('active')
+                            lbl_shield.innerHTML = '';
+                            shield = false;
+                            break
+                        }else {
+                            for (let i = 0; i < bomb_Map.length; i++) {
+                                const tileId = `${bomb_Map[i]}`;
+                                document.getElementById(tileId).innerHTML = '💥';
+                                setTimeout(() => {
+                                    document.getElementById(tileId).classList.add("boom");
+                                }, 600);
+    
+                            }
+                            document.getElementById(tileId).classList.add("boom");
+                            disable_Tiles()
+                            setTimeout(() => {
+                                document.getElementById("output_result").innerHTML = `Verloren 🥵 </br> </br> ${bomb_amount} Minen sind explodiert`;
+                                document.getElementById("result_window").classList.add("active");
+                            }, 3200);
+                            break
                         }
-                        document.getElementById(tileId).classList.add("boom");
-                        disable_Tiles()
-                        setTimeout(() => {
-                            document.getElementById("output_result").innerHTML = `Verloren 🥵 </br> </br> ${bomb_amount} Minen sind explodiert`;
-                            document.getElementById("result_window").classList.add("active");
-                        }, 3200);
-                        break
                     }
 
                     document.getElementById(tileId).innerHTML = bombCounter;

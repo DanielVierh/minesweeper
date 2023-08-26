@@ -98,6 +98,17 @@ h1 {
   z-index: 100;
 }
 
+.shieldlabel {
+  position: fixed;
+  right: 20px;
+  top: 25px;
+  font-size: 2em;
+  z-index: 100;
+}
+.shieldlabel.active {
+  animation: find_shield 1.5s ease;
+}
+
 @keyframes scan_animation {
   0% {
     bottom: 3%;
@@ -115,6 +126,17 @@ h1 {
   }
   to {
     font-size: 200px;
+  }
+}
+@keyframes find_shield {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 .alert-window {
