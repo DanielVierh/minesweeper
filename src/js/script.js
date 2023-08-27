@@ -155,7 +155,7 @@ tiles.forEach((tile) => {
                             document.getElementById(tileId).classList.add("boom");
                             disable_Tiles()
                             setTimeout(() => {
-                                document.getElementById("output_result").innerHTML = `Verloren 🥵 </br> </br> ${bomb_amount} Minen sind explodiert`;
+                                document.getElementById("output_result").innerHTML = `Verloren 🥵`;
                                 document.getElementById("result_window").classList.add("active");
                             }, 3200);
                             break
@@ -184,7 +184,7 @@ tiles.forEach((tile) => {
                         }
                         disable_Tiles()
                         setTimeout(() => {
-                            document.getElementById("output_result").innerHTML = `Gewonnen 😀 </br> </br> Du hast alle ${bomb_amount} Minen gesichert`;
+                            document.getElementById("output_result").innerHTML = `Gewonnen 😀`;
                             document.getElementById("result_window").classList.add("active");
                         }, 2200);
                         break
