@@ -17,7 +17,7 @@ window.onload = () => {
     add_Bombs(bomb_amount);
     random_tile_color();
     first_hints();
-    //helper_colorize_Bombs()
+    helper_colorize_Bombs()
 }
 
 // Discover 4 fields, that are minefree
@@ -82,7 +82,7 @@ function helper_colorize_Bombs() {
 
     for (let i = 1; i < tiles.length; i++) {
         if (document.getElementById(`tile_${i}`).getAttribute('data-field') === 'shield') {
-            document.getElementById(`tile_${i}`).style.backgroundColor = 'blue'
+            document.getElementById(`tile_${i}`).style.color = 'blue'
         }
     }
 
@@ -136,10 +136,9 @@ tiles.forEach((tile) => {
                         if (shield === true) {
                             setTimeout(() => {
                                 document.getElementById(tileId).innerHTML = '🛡';
-                            }, 2000);
+                                document.getElementById(tileId).classList.add("activate-shield")
+                            }, 1000);
                             document.getElementById(tileId).innerHTML = '💥';
-                            lbl_shield.classList.remove('active')
-                            lbl_shield.classList.add('active')
                             lbl_shield.innerHTML = '';
                             checked_fields--;
                             shield = false;

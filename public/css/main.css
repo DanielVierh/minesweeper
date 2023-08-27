@@ -63,6 +63,9 @@ h1 {
 .field .tile.digged {
   background-image: url(../javascript/74bebc283e73a60e01b8.png);
 }
+.field .tile.activate-shield {
+  animation: activateShield 1s ease;
+}
 .field .tile.scanning {
   background-color: rgb(56, 52, 52);
   position: relative;
@@ -143,6 +146,14 @@ h1 {
     transform: scale(2.5);
   }
   100% {
+    transform: scale(1);
+  }
+}
+@keyframes activateShield {
+  from {
+    transform: scale(2.5);
+  }
+  to {
     transform: scale(1);
   }
 }
