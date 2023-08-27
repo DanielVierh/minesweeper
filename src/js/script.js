@@ -17,7 +17,7 @@ window.onload = () => {
     add_Bombs(bomb_amount);
     random_tile_color();
     first_hints();
-    helper_colorize_Bombs()
+    //helper_colorize_Bombs()
 }
 
 // Discover 4 fields, that are minefree
