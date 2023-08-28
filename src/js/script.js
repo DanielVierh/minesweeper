@@ -1,6 +1,6 @@
 const tiles = document.querySelectorAll('.tile');
 const min_bombs = 7;
-const max_bombs = 20;
+const max_bombs = 40;
 const bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
 let bomb_Map = [];
 let checked_fields = 0;
@@ -9,6 +9,7 @@ const btn_restart = document.getElementById("btn_restart");
 const lbl_mines_amount = document.getElementById("lbl_mines_amount");
 const lbl_shield = document.getElementById("lbl_shield");
 let many_mines = false;
+let many_many_mines = false;
 let shield = false;
 
 
@@ -22,7 +23,7 @@ window.onload = () => {
 
 // Discover 4 fields, that are minefree
 function first_hints() {
-    if (bomb_amount >= 15) {
+    if (bomb_amount >= 15 && bomb_amount < 30) {
         many_mines = true;
         const amount_of_helpers = 4
         let counter = 0;
@@ -39,6 +40,24 @@ function first_hints() {
             }
         }
     }
+    if (bomb_amount >= 30 ) {
+        many_many_mines = true;
+        const amount_of_helpers = 6
+        let counter = 0;
+        place_shield();
+        for (let i = 5; i < tiles.length; i++) {
+            if (counter < amount_of_helpers) {
+                if (document.getElementById(`tile_${i}`).getAttribute("data-field") !== 'bomb') {
+                    document.getElementById(`tile_${i}`).innerHTML = '⛳️';
+                    i += 15
+                    counter++;
+                }
+            } else {
+                break
+            }
+        }
+    }
+
 }
 
 function place_shield() {
@@ -111,12 +130,16 @@ tiles.forEach((tile) => {
                         bombCounter++;
                     } else if (adjacentAttribute !== false && adjacentAttribute !== 'checked') {
 
-                        // Adds random secure marker 
+                        // Adds random secure marker
                         if (document.getElementById(adjacentAttribute).getAttribute("data-status") !== 'checked') {
                             if (many_mines) {
                                 if (parseInt(Math.random() * 7) <= 2) {
                                     document.getElementById(adjacentAttribute).innerHTML = '⛳️'
                                 }
+                            } else if (many_many_mines){
+                                    if (parseInt(Math.random() * 7) <= 3) {
+                                        document.getElementById(adjacentAttribute).innerHTML = '⛳️'
+                                    }
                             } else {
                                 if (parseInt(Math.random() * 7) === 1) {
                                     document.getElementById(adjacentAttribute).innerHTML = '⛳️'
