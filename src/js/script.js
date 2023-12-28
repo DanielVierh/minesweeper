@@ -4,7 +4,7 @@ let max_bombs = 40;
 let bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
 let bomb_Map = [];
 let checked_fields = 0;
-const winner_Number = tiles.length - bomb_amount;
+let winner_Number = tiles.length - bomb_amount;
 const btn_restart = document.getElementById('btn_restart');
 const lbl_mines_amount = document.getElementById('lbl_mines_amount');
 const lbl_shield = document.getElementById('lbl_shield');
@@ -56,20 +56,20 @@ function set_game_difficulty() {
     if(difficulty === '0') {
         min_bombs = 3;
         max_bombs = 15;
-        bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
     }
 
     if(difficulty === '1') {
         min_bombs = 15;
         max_bombs = 20;
-        bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
     }
 
     if(difficulty === '2') {
         min_bombs = 20;
         max_bombs = 45;
-        bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
     }
+    
+    bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
+    winner_Number = tiles.length - bomb_amount;
 }
 
 function save_into_storage() {
