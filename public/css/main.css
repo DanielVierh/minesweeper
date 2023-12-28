@@ -29,6 +29,22 @@ h1 {
   font-size: 1em;
 }
 
+h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper p {
+  margin-left: 20px;
+}
+
 .field {
   width: 100%;
   max-width: 400px;

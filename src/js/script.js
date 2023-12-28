@@ -1,24 +1,80 @@
 const tiles = document.querySelectorAll('.tile');
-const min_bombs = 7;
-const max_bombs = 40;
-const bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
+let min_bombs = 7;
+let max_bombs = 40;
+let bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
 let bomb_Map = [];
 let checked_fields = 0;
 const winner_Number = tiles.length - bomb_amount;
 const btn_restart = document.getElementById('btn_restart');
 const lbl_mines_amount = document.getElementById('lbl_mines_amount');
 const lbl_shield = document.getElementById('lbl_shield');
+const inp_difficult = document.getElementById('inp_difficult');
+const lbl_difficult = document.getElementById('lbl_difficult');
 let many_mines = false;
 let many_many_mines = false;
 let shield = false;
+let difficulty = 0;
+
+let save_Object = {
+    difficulty: 0
+}
+
+const difficult_struct = ["leicht", "mittel", "schwer"];
 
 window.onload = () => {
+    load_from_localStorage();
     lbl_mines_amount.innerHTML = `${bomb_amount} Minen`;
     add_Bombs(bomb_amount);
     random_tile_color();
     first_hints();
-    //helper_colorize_Bombs()
+    //helper_colorize_Bombs();
 };
+
+function load_from_localStorage() {
+    if (localStorage.getItem('stored_Minsweeper_Saveobj') !== '') {
+        try {
+            save_Object = JSON.parse(localStorage.getItem('stored_Minsweeper_Saveobj'));
+            difficulty = save_Object.difficulty;
+            lbl_difficult.innerHTML = difficult_struct[difficulty];
+            inp_difficult.value = difficulty;
+            set_game_difficulty();
+        } catch (error) {
+            //console.log(error);
+            save_Object = {
+                difficulty: 0
+            }
+            difficulty = 0;
+            lbl_difficult.innerHTML = difficult_struct[difficulty];
+            inp_difficult.value = difficulty;
+            save_into_storage();
+            set_game_difficulty();
+        }
+    }
+}
+
+function set_game_difficulty() {
+    if(difficulty === '0') {
+        min_bombs = 3;
+        max_bombs = 15;
+        bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
+    }
+
+    if(difficulty === '1') {
+        min_bombs = 15;
+        max_bombs = 20;
+        bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
+    }
+
+    if(difficulty === '2') {
+        min_bombs = 20;
+        max_bombs = 45;
+        bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
+    }
+}
+
+function save_into_storage() {
+    localStorage.setItem('stored_Minsweeper_Saveobj', JSON.stringify(save_Object));
+}
 
 // Discover 4 fields, that are minefree
 function first_hints() {
@@ -363,3 +419,14 @@ function disable_Tiles() {
 btn_restart.addEventListener('click', () => {
     window.location.reload();
 });
+
+
+//* Change difficulty
+inp_difficult.addEventListener('input', ()=> {
+    difficulty = inp_difficult.value;
+    lbl_difficult.innerHTML = difficult_struct[difficulty];
+    // Save
+    save_Object.difficulty = difficulty;
+    save_into_storage();
+    window.location.reload();
+})
