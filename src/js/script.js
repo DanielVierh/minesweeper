@@ -67,7 +67,7 @@ function set_game_difficulty() {
         min_bombs = 20;
         max_bombs = 45;
     }
-    
+
     bomb_amount = Math.floor(Math.random() * max_bombs) + min_bombs;
     winner_Number = tiles.length - bomb_amount;
 }
@@ -274,7 +274,6 @@ tiles.forEach((tile) => {
                             checked_fields--;
                             lbl_mines_amount.innerHTML = `${checked_fields} / ${winner_Number} (${bomb_amount} Minen)`;
                             shield = false;
-                            play_sound('explosion');
                             break;
                         } else {
                             for (let i = 0; i < bomb_Map.length; i++) {
@@ -285,7 +284,6 @@ tiles.forEach((tile) => {
                                     document
                                         .getElementById(tileId)
                                         .classList.add('boom');
-                                    play_sound('explosion');
                                 }, 600);
                             }
                             document
@@ -309,17 +307,14 @@ tiles.forEach((tile) => {
 
                     if (bombCounter === 0) {
                         document.getElementById(tileId).style.color = 'white';
-                        play_sound('clear');
                     } else if (bombCounter === 1) {
                         document.getElementById(tileId).style.color = 'yellow';
                         document.getElementById(tileId).style.textShadow =
                             '0px 0px 5px black';
-                        play_sound('clear');
                     } else {
                         document.getElementById(tileId).style.color = 'yellow';
                         document.getElementById(tileId).style.textShadow =
                             '0px 0px 5px black';
-                            play_sound('clear')
                     }
 
                     // Gewonnen
@@ -347,20 +342,6 @@ tiles.forEach((tile) => {
         }
     });
 });
-
-function play_sound(event) {
-    if (event === 'explosion') {
-        document.getElementById('explosion').play(); // Abspielen
-        setTimeout(() => {
-            document.getElementById('explosion').pause(); // Pause
-        }, 300);
-    } else {
-        document.getElementById('clear').play(); // Abspielen
-        setTimeout(() => {
-            document.getElementById('clear').pause(); // Pause
-        }, 300);
-    }
-}
 
 function getAdjacentTileAttribute(tileId, direction) {
     const row = Math.floor((parseInt(tileId.split('_')[1]) - 1) / 9) + 1;
